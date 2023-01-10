@@ -8,4 +8,16 @@ One of the challenges around managing MachineSets with GitOps is that each Machi
 
 In this example we will use kustomize to manage this. A base MachineSet exists in the folder `components/apps/machineset/workers/base` which can then be re-used at the cluster level. To handle the unique naming of the machineset we can simply use a kustomize override to patch the correct name into the partial yaml.
 
-This kustomization for patching the name is located under the `clusters/rhpds/apps/machineset/overrides/workers` folder.
+This kustomization for patching the name is located under the `clusters/rhpds/apps/machineset/overrides/workers` folder, here it is as an example:
+
+```
+patches:
+  - patch: |-
+      - op: replace
+        path: /metadata/name
+        value: cluster-lcfp9-k7g79-worker-us-east-2b
+    target:
+      group: machine.openshift.io
+      kind: MachineSet
+      name: example-worker
+```
