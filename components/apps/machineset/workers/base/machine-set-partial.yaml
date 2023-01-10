@@ -1,0 +1,8 @@
+apiVersion: machine.openshift.io/v1beta1
+kind: MachineSet
+metadata:
+  name: example-worker
+  annotations:
+    argocd.argoproj.io/sync-options: Validate=false,ServerSideApply=true
+spec:
+  replicas: 4

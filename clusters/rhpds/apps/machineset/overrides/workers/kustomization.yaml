@@ -1,0 +1,12 @@
+resources:
+- ../../../../../../components/apps/machineset/workers/base
+
+patches:
+  - patch: |-
+      - op: replace
+        path: /metadata/name
+        value: cluster-lcfp9-k7g79-worker-us-east-2b
+    target:
+      group: machine.openshift.io
+      kind: MachineSet
+      name: example-worker
